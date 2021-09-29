@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">  <title>Neopixel Control Centre</title>
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+  <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+  
+  <script src="js/jscolor.js"></script>
+ 
+  <script language="javascript">
+    
+    var gwUrl = "ws://10.0.33.141/ws";
+    var webSocket = new WebSocket(gwUrl);
+    webSocket.onopen = function(e) {
+        console.log("open");
+    }
+    webSocket.onclose = function(e) {
+        console.log("close");
+    }
+  
+   webSocket.onmessage = function(e) {
+        console.log("message");
+    }
+    function on() {
+      var val = document.getElementById('type-color-on-page').value;
+      webSocket.send(val.substring(0));    
+      }
+    function off() {
+      n='#000000';
+      webSocket.send(n);     
+      }  
+    function handleColor() {
+      var val = document.getElementById('type-color-on-page').value;
+      webSocket.send(val.substring(0));         
+    }
+
+    $( document ).ready(function() {
+    $("body").on('click', "#colorchange", function(e){
+        console.log( "Function run" );
+    });
+    $("body").on('click', "#coloron", function(e){
+        console.log( "Function on" );
+    });
+    $("body").on('click', "#coloroff", function(e){
+        console.log( "Function off" );
+    });
+    });
+  </script>
+</head>
+<body>
+<div style="text-align: center" class="container">
+  <img  src="download.png"/>
+  <h1>ESP Web Server</h1>
+    <h3>Welcome to Neopixel Control Centre</h3><br>
+    <div class="content">
+        <p><h2>Pick a color</h2></p>
+              <label for="font-color"><h2></h2></label>
+              <input name="font-color" id="type-color-on-page" data-jscolor="{closeButton:true, closeText:'Close me!', backgroundColor:'#333', buttonColor:'#FFF'}" value='n'>
+              <p><br>
+                <button class="btn btn-primary" id="coloron" onclick="on()">Turn on</button>
+                <button class="btn btn-danger" id="coloroff" onclick="off()">Turn off</button>
+                <button class="btn btn-success" id="colorchange" onclick="handleColor()">Change Color</button>
+              </p>
+    </div>
+</div>
+</body>
+</html>
