@@ -3,15 +3,15 @@
 #include <ESPAsyncTCP.h>
 #include <ESPAsyncWebServer.h>
 #include <Adafruit_NeoPixel.h>
-#include "C:\Users\mohammad.shahbaaz\Documents\PlatformIO\Projects\Project 1.1 Blink\my-project\build\index.html.gz.h"
+#include <index.html.gz.h>
 
 char last_modified[50];
 
 // Neopixel
 Adafruit_NeoPixel strip = Adafruit_NeoPixel(8, 12, NEO_GRB + NEO_KHZ800);
 // WiFi config
-const char *SSID = "Solace-Guest";
-const char *PWD = "Power2Guest";
+const char *SSID = "Wifi SSID";
+const char *PWD = "Password";
 
 // Web server running on port 80
 AsyncWebServer server(80);
